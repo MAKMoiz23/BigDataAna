@@ -1,5 +1,6 @@
 import threading
 import time
+from typing import List
 
 def countWord(dt, res_list):
     wdict = {}
@@ -34,11 +35,7 @@ def mergeResult(lst, fdic):
             count += value
     return fdic, count            
 
-if __name__ == "__main__":
-    fileName = input("Enter filename to read :")
-    mode ='r'
-    instances = int(input("Enter no of Map instances :"))
-
+def main():
     # Starting time of ex after input
     st = time.time()
 
@@ -82,3 +79,24 @@ if __name__ == "__main__":
     # get the execution time
     elapsed_time = et - st
     print(f'Execution time: {elapsed_time} seconds')
+
+    return elapsed_time, instances
+
+if __name__ == "__main__":
+    etList = list()
+    insList = list()
+    while True:
+        fileName = input("Enter filename to read :")
+        if(fileName == ''):
+            break
+
+        mode ='r'
+        instances = int(input("Enter no of Map instances :"))
+        et, ins = main()
+        etList.append(et)
+        insList.append(ins)
+    
+    with open('result.txt', 'w') as f:
+        f.write(str([etList, insList]))
+        f.close()
+    
