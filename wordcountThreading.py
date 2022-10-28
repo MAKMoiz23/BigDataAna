@@ -1,6 +1,5 @@
 import threading
 import time
-from typing import List
 
 def countWord(dt, res_list):
     wdict = {}
